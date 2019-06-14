@@ -24,6 +24,12 @@ void DO_STATUS_std()
       current_STATUS = STATUS_msg;
     }
   }
+
+  if(keyDective(SW) == LONG_PRESSED)
+  {
+     current_STATUS = STATUS_pair;
+  }
+  
 }
 
 void DO_STATUS_msg()
@@ -33,5 +39,6 @@ void DO_STATUS_msg()
 
 void DO_STATUS_pair()
 {
-
+  radio_pair();
+  led_blink();
 }

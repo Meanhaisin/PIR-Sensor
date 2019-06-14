@@ -1,5 +1,6 @@
 #include "Arduino.h"
 #include "system.h"
+#include "key.h"
 
 
 #define STATUS_init 0
@@ -10,6 +11,7 @@
 uint8_t current_STATUS = STATUS_init;
 
 extern bool alarm;
+extern uint8_t keyState;
 
 void DO_STATUS_init();
 void DO_STATUS_std();
