@@ -1,4 +1,7 @@
-#include "config.h"
+#include "system.h"
+#include "radio.h"
+
+
 
 void system_init()
 {
@@ -8,9 +11,5 @@ void system_init()
   digitalWrite(SW,HIGH); //enable pullup
   pinMode(LED,OUTPUT);
 
-  RF.begin();
-  RF.setDataRate(RF24_250KBPS);
-  RF.setPALevel(RF24_PA_HIGH);
-  RF.setPayloadSize(LOAD_SIZE);``
-  
+  radio_init();
 }

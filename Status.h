@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#include "system.h"
 
 #define STATUS_init 0
 #define STATUS_std 1
