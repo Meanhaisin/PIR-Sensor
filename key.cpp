@@ -11,10 +11,8 @@ bool readKey(int sw)
     return 1;
   }
 }
-/* 按键检测函数，通过有限状态机实现
-  函数在从等待状态转换到按键按下状态时返回 PRESSED，代表按键已被触发
-  其他情况返回 NOT_PRESSED
-*/
+
+
 uint8_t keyDetect(int sw)
 {
   static uint8_t duriation;  // 用于在等待状态中计数

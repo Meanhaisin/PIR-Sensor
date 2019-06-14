@@ -21,7 +21,7 @@
 /* 按键扫描程序所处的状态
   初始状态为：按键按下（KEY_STATE_RELEASE）
 */
-uint8_t keyState = KEY_STATE_RELEASE;
+extern uint8_t keyState;
 
 bool readKey(int sw);
 uint8_t keyDective(int sw);
