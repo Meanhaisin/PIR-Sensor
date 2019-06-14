@@ -1,11 +1,7 @@
 #include "Status.h"
 
-void DO_STATUS_init()
-{
-  system_init();
-
-  
-}
+uint8_t current_STATUS = STATUS_std;
+bool alarm = 0;
 
 void DO_STATUS_std()
 {
@@ -25,7 +21,7 @@ void DO_STATUS_std()
     }
   }
 
-  if(keyDective(SW) == LONG_PRESSED)
+  if(keyDetect(SW) == LONG_PRESSED)
   {
      current_STATUS = STATUS_pair;
   }
@@ -34,11 +30,13 @@ void DO_STATUS_std()
 
 void DO_STATUS_msg()
 {
-  
+  //待完善(需先完善radio)
 }
 
 void DO_STATUS_pair()
 {
   radio_pair();
   led_blink();
+
+  //待完善(同上)
 }

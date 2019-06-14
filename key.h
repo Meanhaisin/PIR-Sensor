@@ -1,3 +1,6 @@
+#ifndef _key_H
+#define _key_H
+
 #include "Arduino.h"
 #include "system.h"
 
@@ -18,10 +21,7 @@
 #define PRESSED 1
 #define NOT_PRESSED 0
 
-/* 按键扫描程序所处的状态
-  初始状态为：按键按下（KEY_STATE_RELEASE）
-*/
-extern uint8_t keyState;
-
 bool readKey(int sw);
-uint8_t keyDective(int sw);
+uint8_t keyDetect(int sw);
+
+#endif

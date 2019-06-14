@@ -1,5 +1,10 @@
 #include "key.h"
 
+/* 按键扫描程序所处的状态
+  初始状态为：按键按下（KEY_STATE_RELEASE）
+*/
+uint8_t keyState = KEY_STATE_RELEASE;
+
 bool readKey(int sw)
 {
   if (digitalRead(sw))
