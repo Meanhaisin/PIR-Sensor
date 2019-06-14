@@ -12,8 +12,8 @@ void radio_init()
   //待完善
 }
 
-void radio_pair()
+bool radio_pair()
 {
-  //待完善
+  //待完善,记得在配对完后发数据测试一下,不通过则失败
   
 }

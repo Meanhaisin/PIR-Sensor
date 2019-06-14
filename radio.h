@@ -12,8 +12,9 @@
 #define LOAD_SIZE 16 //发射负载大小
 
 const byte pair_pipe[6] = "pairP"; //配对默认管道
+const byte pipe[5][6];
 
 void radio_init();
-void radio_pair(); //配对函数
+bool radio_pair(); //配对函数
 
 #endif
