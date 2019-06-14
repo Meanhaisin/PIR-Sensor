@@ -1,8 +1,6 @@
 #include "system.h"
 #include "radio.h"
 
-
-
 void system_init()
 {
   pinMode(PIR,INPUT);
