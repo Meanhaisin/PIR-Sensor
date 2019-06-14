@@ -5,6 +5,8 @@
 #define STATUS_msg 2
 #define STATUS_pair 3
 
+uint8_t current_STATUS = STATUS_init;
+
 void DO_STATUS_init();
 void DO_STATUS_std();
 void DO_STATUS_msg();
