@@ -4,7 +4,7 @@
 #include "Arduino.h"
 #include "system.h"
 
-/* 按键去抖动状态机中的三个状态 */git 
+/* 按键去抖动状态机中的三个状态 */
 #define KEY_STATE_RELEASE   0 // 按键未按下
 #define KEY_STATE_WAITING   1 // 等待（消抖）
 #define KEY_STATE_PRESSED   2 // 按键按下（等待释放）
