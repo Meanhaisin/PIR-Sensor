@@ -39,8 +39,7 @@ uint8_t keyDetect(int sw)
         if (duriation >= PRESSED_TIME)   // 如果经过多次检测，按键仍然按下
         { // 说明没有抖动了，可以确定按键已按下
           duriation = 0;
-          keyState = KEY_STATE_LONG_PRESSED;  // 转换至下一个状态
-          return PRESSED;
+          keyState = KEY_STATE_PRESSED;  // 转换至下一个状态
         }
       }
       else  // 如果此时按键松开
@@ -51,7 +50,7 @@ uint8_t keyDetect(int sw)
       }
       break;
 
-    case KEY_STATE_LONG_PRESSED:
+    case KEY_STATE_PRESSED:
       if (readKey(sw) == 1)
       {
         duriation++;
@@ -59,24 +58,24 @@ uint8_t keyDetect(int sw)
         {
           duriation = 0;
           keyState = KEY_STATE_LONG_PRESSED;  // 转换至下一个状态
-          return PRESSED;
+          return LONG_PRESSED;
         }
       }
       else
       {
         duriation = 0;
-        keyState = KEY_STATE_PRESSED;
+        keyState = KEY_STATE_RELEASE  ;
         return PRESSED;
       }
       break;
 
 
-    case KEY_STATE_PRESSED:
+    case KEY_STATE_LONG_PRESSED:
       if (readKey(sw) == 0)      // 如果按键松开
       {
         keyState = KEY_STATE_RELEASE;  // 回到按键松开的状态
+        return NOT_PRESSED;
       }
-      return NOT_PRESSED;
       break;
 
     default:
