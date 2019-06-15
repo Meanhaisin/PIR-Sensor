@@ -7,7 +7,6 @@ RF24 RF(CE, CSN);
 
 bool radioInit()
 {
-  
   RF.begin();
   RF.setDataRate(RF24_250KBPS); //发射速率设定
   RF.setPALevel(RF24_PA_HIGH); //发射功率设定,测试后可适当调小以节能
@@ -54,6 +53,7 @@ void radioPair()
     case RF_STATUS_PAIRING:
       if (RF.available())
       {
+        //ledchange = 1;
         RF.read(&send_pipe, sizeof(send_pipe));
         writePipe(send_pipe);
         RF.stopListening();
@@ -62,6 +62,12 @@ void radioPair()
         rfStatus = RF_STATUS_STD;
         current_STATUS = STATUS_STD;
       }
+      /*
+      else
+      {
+        ledchange = 0;
+      }
+      */
       break;
   }
 

@@ -27,4 +27,7 @@ void led_blink();
 void blink_block(uint8_t t, uint8_t count);
 uint8_t bat_voltage();
 
+boolean ledchange = 1;
+boolean ledflag = 0;
+
 #endif
