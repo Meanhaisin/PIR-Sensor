@@ -18,7 +18,7 @@
 
 /* 按键检测函数的返回值，按下为 1，未按下为 0 */
 #define LONG_PRESSED 2
-#define PRESSED 1
+#define SHORT_PRESSED 1
 #define NOT_PRESSED 0
 
 bool readKey(int sw);

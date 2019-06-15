@@ -58,14 +58,14 @@ uint8_t keyDetect(int sw)
         {
           duriation = 0;
           keyState = KEY_STATE_LONG_PRESSED;  // 转换至下一个状态
-          //return LONG_PRESSED;
+          //return LONGT_PRESSED;
         }
       }
       else
       {
         duriation = 0;
         keyState = KEY_STATE_RELEASE  ;
-        return PRESSED;
+        return SHORT_PRESSED;
       }
       break;
 
