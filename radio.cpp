@@ -1,6 +1,6 @@
 #include "radio.h"
 
-uint64_t send_pipe; //发送管道,从EEPROM读取
+byte send_pipe[5]; //发送管道,从EEPROM读取
 uint8_t rfStatus = RF_STATUS_STD;
 
 RF24 RF(CE, CSN);
@@ -12,6 +12,8 @@ bool radioInit()
   RF.setDataRate(RF24_250KBPS); //发射速率设定
   RF.setPALevel(RF24_PA_HIGH); //发射功率设定,测试后可适当调小以节能
   RF.setPayloadSize(PAY_LOAD_SIZE_STD); //发射负载大小(Byte)
+  readPipe();
+  delay(4);
   if (pairCheck())
   {
     RF.openWritingPipe(send_pipe);
