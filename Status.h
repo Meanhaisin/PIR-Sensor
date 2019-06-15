@@ -7,17 +7,15 @@
 #include "key.h"  //按键代码
 
 extern uint8_t keyState; //按键状态
+extern uint8_t rfStatus; //无线状态
 extern bool readKey(int sw);
 extern uint8_t keyDective(int sw); //按键读取函数
 extern void led_blink(); //led控制函数
 
 
-#define STATUS_std 0
-#define STATUS_msg 1
-#define STATUS_pair 2
-
-extern uint8_t current_STATUS; //设备状态
-extern bool alarm; //报警知识
+#define STATUS_STD 0
+#define STATUS_MSG 1
+#define STATUS_PAIR 2
 
 void DO_STATUS_std();
 void DO_STATUS_msg();
