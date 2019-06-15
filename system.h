@@ -3,7 +3,6 @@
 
 #include "Arduino.h"
 #include "radio.h"
-#include "EEPROM.h" //待实现
 
 #define PIR 2
 #define IRQ 3
