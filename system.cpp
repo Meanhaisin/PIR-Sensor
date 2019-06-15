@@ -20,6 +20,7 @@ bool system_init() //初始化端口、RF模块、检测设备是否完成配对
 
 void led_blink()
 {
+<<<<<<< HEAD
   if (ledchange == 1) //开始配对
   {
     static uint8_t duriation;
@@ -39,6 +40,9 @@ void led_blink()
       ledflag = !ledflag;
     }
   }
+=======
+  if()
+>>>>>>> c1566da90f1f54b94afbc36ae085fa3389f8bdb7
 }
 
 void blink_block(uint8_t t, uint8_t count)

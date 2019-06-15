@@ -21,7 +21,7 @@
 #define PAY_LOAD_SIZE_PAIR 6 //配对发射负载大小
 #define PAIR_READINGPIPE 1 //配对管道
 
-const byte pair_pipe[5] = {'P','p','a','i','r'}; //配对默认管道
+const byte pair_pipe[5] = "Ppair"; //配对默认管道
 
 bool radioInit();
 void radioSend(bool flag); //发送
