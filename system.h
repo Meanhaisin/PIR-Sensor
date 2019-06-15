@@ -15,7 +15,7 @@
  */
 #define LED_STATUS_BRIGHT 0
 #define LED_STATUS_DARK 1
-#define LED_CHANGE_DELAY_SLOW 100 //闪烁间隔
+#define LED_DELAY_SLOW 5000 //闪烁间隔
  
 extern uint8_t current_STATUS;
 extern bool alarm;

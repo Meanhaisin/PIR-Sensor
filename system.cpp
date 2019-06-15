@@ -27,12 +27,12 @@ void led_blink()
   if (ledchange == 1) //开始配对
   {
     static uint8_t duriation;
-    if(ledflag == 1 && duriation < 5000) //led high
+    if(ledflag == 1 && duriation < LED_DELAY_SLOW) //led high
     {
       digitalWrite(LED, HIGH);
       duriation++;
     }
-    else if(ledflag == 0 && duriation < 5000) //led low
+    else if(ledflag == 0 && duriation < LED_DELAY_SLOW) //led low
     {
       digitalWrite(LED, LOW);
       duriation++;
