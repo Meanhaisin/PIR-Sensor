@@ -7,6 +7,7 @@
 #include "RF24.h"
 #include "system.h"
 #include "ROM.h"
+#include "Status.h"
 
 #define CE 9
 #define CSN 10
@@ -23,7 +24,8 @@
 const byte pair_pipe[5] = {'P','p','a','i','r'}; //配对默认管道
 
 bool radioInit();
-bool radioPair(); //配对函数
+void radioSend(bool flag); //发送
+void radioPair(); //配对函数
 bool pairCheck(); //配对检查(检查标志位)
 
 #endif

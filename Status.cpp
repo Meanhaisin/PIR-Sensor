@@ -5,7 +5,7 @@ bool alarm = 0;
 
 void DO_STATUS_std()
 {
-  if(digitalRead(PIR) == HIGH)
+  if(digitalRead(PIR) == HIGH && alarm == 0)
   {
     alarm = 1;
     
@@ -13,7 +13,7 @@ void DO_STATUS_std()
   }
   else
   {
-    if(!alarm)
+    if(alarm)
     {
       alarm = 0;
 
@@ -30,11 +30,15 @@ void DO_STATUS_std()
 
 void DO_STATUS_msg()
 {
-  //待完善(需先完善radio)
+
+  radioSend(alarm);
+  current_STATUS = STATUS_STD;
+    
 }
 
 void DO_STATUS_pair()
 {
+  
   led_blink();
   radioPair();
   

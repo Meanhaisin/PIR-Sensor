@@ -24,7 +24,23 @@ bool radioInit()
   
 }
 
-bool radioPair()
+void radioSend(bool flag)
+{
+  uint8_t msg = 0;
+  
+  if (flag)
+  {
+    msg = bat_voltage() * 2 + 1;
+  }
+  else
+  {
+    msg = bat_voltage() * 2;
+  }
+  
+  RF.write(&msg,sizeof(msg));
+}
+
+void radioPair()
 {
 
   switch (rfStatus)
@@ -44,6 +60,7 @@ bool radioPair()
         RF.closeReadingPipe(PAIR_READINGPIPE);
         blink_block(10,3);
         rfStatus = RF_STATUS_STD;
+        current_STATUS = STATUS_STD;
       }
       break;
   }
