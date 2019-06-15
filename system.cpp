@@ -20,7 +20,7 @@ bool system_init() //初始化端口、RF模块、检测设备是否完成配对
 
 void led_blink()
 {
-  //待完善，建议非阻塞实现
+  if()
 }
 
 void blink_block(uint8_t t, uint8_t count)
