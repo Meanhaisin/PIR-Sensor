@@ -9,6 +9,7 @@
 #define IRQ 3
 #define SW 4
 #define LED 5
+#define BAT A0
 
 /*
  * LED的三种状态以及闪烁间隔
@@ -25,5 +26,6 @@ extern uint8_t keyStatus;
 bool system_init();
 void led_blink();
 void blink_block(uint8_t t, uint8_t count);
+uint8_t bat_voltage();
 
 #endif

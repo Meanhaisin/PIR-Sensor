@@ -35,3 +35,10 @@ void blink_block(uint8_t t, uint8_t count)
   }
 
 }
+
+uint8_t bat_voltage()
+{
+
+   return analogRead(BAT) / 7;
+   
+}

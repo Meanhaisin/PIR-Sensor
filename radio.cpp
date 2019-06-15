@@ -30,7 +30,7 @@ bool radioPair()
   switch (rfStatus)
   {
     case RF_STATUS_START_PAIR:
-      RF.openReadingPipe(1, pair_pipe);
+      RF.openReadingPipe(PAIR_READINGPIPE, pair_pipe);
       RF.startListening();
       rfStatus = RF_STATUS_PAIRING;
       break;
@@ -40,6 +40,8 @@ bool radioPair()
       {
         RF.read(&send_pipe, sizeof(send_pipe));
         writePipe(send_pipe);
+        RF.stopListening();
+        RF.closeReadingPipe(PAIR_READINGPIPE);
         blink_block(10,3);
         rfStatus = RF_STATUS_STD;
       }
