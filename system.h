@@ -22,7 +22,8 @@ extern uint8_t current_STATUS;
 extern bool alarm;
 extern uint8_t keyStatus;
 
-void system_init();
+bool system_init();
 void led_blink();
+void blink_block(uint8_t t, uint8_t count);
 
 #endif

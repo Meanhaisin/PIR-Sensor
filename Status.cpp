@@ -1,6 +1,6 @@
 #include "Status.h"
 
-uint8_t current_STATUS = STATUS_std;
+uint8_t current_STATUS = STATUS_STD;
 bool alarm = 0;
 
 void DO_STATUS_std()
@@ -9,7 +9,7 @@ void DO_STATUS_std()
   {
     alarm = 1;
     
-    current_STATUS = STATUS_msg;
+    current_STATUS = STATUS_MSG;
   }
   else
   {
@@ -17,13 +17,13 @@ void DO_STATUS_std()
     {
       alarm = 0;
 
-      current_STATUS = STATUS_msg;
+      current_STATUS = STATUS_MSG;
     }
   }
 
   if(keyDetect(SW) == LONG_PRESSED)
   {
-     current_STATUS = STATUS_pair;
+     current_STATUS = STATUS_PAIR;
   }
   
 }
@@ -35,8 +35,7 @@ void DO_STATUS_msg()
 
 void DO_STATUS_pair()
 {
-  radio_pair();
   led_blink();
-
-  //待完善(同上)
+  radioPair();
+  
 }
