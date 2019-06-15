@@ -70,4 +70,16 @@ void radioPair()
 bool pairCheck()
 {
   
+  int check = 0;
+  
+  check = EEPROM.read(5);
+  if (check == 0)
+  {
+    return 0;
+  }
+  else
+  {
+    return 1;
+  }
+  
 }
