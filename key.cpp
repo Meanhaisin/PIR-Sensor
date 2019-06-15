@@ -58,7 +58,7 @@ uint8_t keyDetect(int sw)
         {
           duriation = 0;
           keyState = KEY_STATE_LONG_PRESSED;  // 转换至下一个状态
-          return LONG_PRESSED;
+          //return LONG_PRESSED;
         }
       }
       else
@@ -74,7 +74,7 @@ uint8_t keyDetect(int sw)
       if (readKey(sw) == 0)      // 如果按键松开
       {
         keyState = KEY_STATE_RELEASE;  // 回到按键松开的状态
-        return NOT_PRESSED;
+        return LONG_PRESSED;
       }
       break;
 
