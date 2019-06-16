@@ -5,7 +5,7 @@ uint8_t rfStatus = RF_STATUS_STD;
 
 RF24 RF(CE, CSN);
 
-bool radioInit()
+bool radioInit() //初始化
 {
   RF.begin();
   RF.setDataRate(RF24_250KBPS); //发射速率设定
@@ -50,12 +50,12 @@ void radioPair()
       RF.openReadingPipe(PAIR_READINGPIPE, pair_pipe);
       RF.startListening();
       rfStatus = RF_STATUS_PAIRING;
+      ledchange = 1;
       break;
 
     case RF_STATUS_PAIRING:
       if (RF.available())
       {
-        //ledchange = 1;
         RF.read(&send_pipe, sizeof(send_pipe));
         writePipe(send_pipe);
         RF.stopListening();
@@ -64,12 +64,10 @@ void radioPair()
         rfStatus = RF_STATUS_STD;
         current_STATUS = STATUS_STD;
       }
-      /*
       else
       {
         ledchange = 0;
       }
-      */
       break;
   }
 
