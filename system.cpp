@@ -43,6 +43,12 @@ void led_blink()
       ledflag = !ledflag;
     }
   }
+  else  //防止led常亮，并修正blink
+  {
+    digitalWrite(LED, LOW);
+    duriation = 0;
+    ledflag = 1;
+  }
 
 }
 
