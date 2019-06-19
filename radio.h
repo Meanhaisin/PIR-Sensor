@@ -8,6 +8,7 @@
 #include "system.h"
 #include "ROM.h"
 #include "Status.h"
+#include "MsTimer2.h"
 
 #define CE 9
 #define CSN 10

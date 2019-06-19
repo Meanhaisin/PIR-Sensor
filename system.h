@@ -22,7 +22,7 @@ extern bool alarm;
 extern uint8_t keyStatus;
 
 bool system_init();
-void led_blink();
+//void led_blink();
 void blink_block(uint8_t t, uint8_t count);
 uint8_t bat_voltage();
 

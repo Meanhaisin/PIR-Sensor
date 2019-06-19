@@ -39,7 +39,6 @@ void DO_STATUS_msg()
 void DO_STATUS_pair()
 {
   
-  led_blink();
   radioPair();
 
   if(keyDetect(SW) == SHORT_PRESSED)

@@ -1,6 +1,6 @@
 #include "radio.h"
 
-extern bool ledchange;
+//extern bool ledchange;
 byte send_pipe[5]; //发送管道,从EEPROM读取
 uint8_t rfStatus = RF_STATUS_STD;
 
@@ -42,8 +42,17 @@ void radioSend(bool flag)
   RF.write(&msg,sizeof(msg));
 }
 
+void led_blink2()
+{
+  static boolean output = HIGH;
+  digitalWrite(LED, output);
+  output = !output;
+}
+
 void radioPair()
 {
+  //led_blink();
+  MsTimer2::set(1000, led_blink2);
 
   switch (rfStatus)
   {
@@ -51,7 +60,8 @@ void radioPair()
       RF.openReadingPipe(PAIR_READINGPIPE, pair_pipe);
       RF.startListening();
       rfStatus = RF_STATUS_PAIRING;
-      ledchange = 1;
+      //ledchange = 1;
+      MsTimer2::start();
       break;
 
     case RF_STATUS_PAIRING:
@@ -67,7 +77,9 @@ void radioPair()
       }
       else
       {
-        ledchange = 0;
+        //ledchange = 0;
+        MsTimer2::stop();
+        digitalWrite(LED, LOW);
       }
       break;
   }
