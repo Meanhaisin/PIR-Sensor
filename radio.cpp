@@ -1,5 +1,6 @@
 #include "radio.h"
 
+extern bool ledchange;
 byte send_pipe[5]; //发送管道,从EEPROM读取
 uint8_t rfStatus = RF_STATUS_STD;
 
