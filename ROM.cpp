@@ -4,7 +4,7 @@ void writePipe(byte pipe[])
 {
   for (uint8_t i = PIPE_OFFSITE; i < SN_WIDTH; i++)
   {
-    EEPROM.update(i, pipe[SN_WIDTH - i]);
+    EEPROM.update(i, pipe[i + 1]);
   }
 }
 
@@ -17,7 +17,7 @@ void readPipe()
 {
   for (uint8_t i = PIPE_OFFSITE; i < PIPE_WIDTH; i++)
   {
-    send_pipe[PIPE_WIDTH - i] = EEPROM.read(i);
+    send_pipe[i + 1] = EEPROM.read(i);
   }
 }
 
