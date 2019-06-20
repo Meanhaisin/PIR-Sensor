@@ -69,6 +69,7 @@ void radioPair()
       {
         RF.read(&send_pipe, sizeof(send_pipe));
         writePipe(send_pipe);
+        writeNO(0,send_pipe);
         RF.stopListening();
         RF.closeReadingPipe(PAIR_READINGPIPE);
         blink_block(10,3);
