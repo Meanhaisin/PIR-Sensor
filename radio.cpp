@@ -73,16 +73,14 @@ void radioPair()
         RF.stopListening();
         RF.closeReadingPipe(PAIR_READINGPIPE);
         blink_block(10,3);
-        rfStatus = RF_STATUS_STD;
-        current_STATUS = STATUS_STD;
       }
-      else
-      {
+      
+      case RF_STATUS_STD:
+        current_STATUS = STATUS_STD;
         //ledchange = 0;
         MsTimer2::stop();
         digitalWrite(LED, LOW);
-      }
-      break;
+        break;
   }
 
 }
