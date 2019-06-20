@@ -10,7 +10,7 @@ void writePipe(byte pipe[])
 
 void writeNO(uint8_t no,byte pipe[])
 {
-  EEPROM.update(PIPE_WIDTH + no, no);
+  EEPROM.update(PIPE_WIDTH + no, pipe[0]);
 }
 
 void readPipe()
