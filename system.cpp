@@ -55,7 +55,7 @@ void led_blink() //配对时非阻塞blink
 void blink_block(uint8_t t, uint8_t count) //阻塞blink
 {
   
-  for (uint8_t i = 0; i < t; i++)
+  for (uint8_t i = 0; i < count; i++)
   {
     digitalWrite(LED, HIGH);
     delay(t);
