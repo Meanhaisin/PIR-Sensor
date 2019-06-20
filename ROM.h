@@ -10,7 +10,7 @@ extern byte send_pipe[5];
 #define PIPE_WIDTH 5
 #define PIPE_OFFSITE 0
 #define NO_OFFSITE 5
-#define SN_OFFSITE 1000
+#define SN_OFFSITE 1021
 
 void writePipe(byte pipe[]); //写入管道,同时设置标志位
 void readPipe();
