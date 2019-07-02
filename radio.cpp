@@ -14,6 +14,7 @@ bool radioInit() //初始化
   RF.setPayloadSize(PAY_LOAD_SIZE_STD); //发射负载大小(Byte)
   readPipe();
   delay(4);
+  
   if (pairCheck())
   {
     RF.openWritingPipe(send_pipe);
@@ -90,7 +91,7 @@ bool pairCheck()
   
   int check = 0;
   
-  check = EEPROM.read(5);
+  check = EEPROM.read(4);
   if (check == 0)
   {
     return 0;

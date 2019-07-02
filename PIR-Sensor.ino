@@ -15,7 +15,6 @@ void setup()
   
 void loop()
 {
-  
   switch (current_STATUS)
   {
     case STATUS_STD:

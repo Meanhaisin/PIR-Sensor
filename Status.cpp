@@ -1,31 +1,17 @@
 #include "Status.h"
 
-uint8_t current_STATUS = STATUS_STD;
-bool alarm = 0;
+volatile uint8_t current_STATUS = STATUS_STD;
+volatile bool alarm = 0;
 
 void DO_STATUS_std()
 {
-  if(digitalRead(PIR) == HIGH && alarm == 0)
-  {
-    alarm = 1;
-    
-    current_STATUS = STATUS_MSG;
-  }
-  else
-  {
-    if(alarm)
-    {
-      alarm = 0;
-
-      current_STATUS = STATUS_MSG;
-    }
-  }
-
   if(keyDetect(SW) == LONG_PRESSED)
   {
      current_STATUS = STATUS_PAIR;
   }
   
+  IDLE_2min();
+  Powerdown(7200000);
 }
 
 void DO_STATUS_msg()

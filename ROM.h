@@ -1,8 +1,8 @@
 #ifndef _ROM_H
 #define _ROM_H
 
-#include "Arduino.h"
-#include "EEPROM.h"
+#include <Arduino.h>
+#include <EEPROM.h>
 #include "radio.h"
 
 extern byte send_pipe[5];
