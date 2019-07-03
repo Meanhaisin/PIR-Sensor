@@ -2,6 +2,7 @@
 
 void setup()
 {
+  Serial.begin(115200);
   if(system_init())
   {
     current_STATUS = STATUS_STD;
@@ -15,6 +16,7 @@ void setup()
   
 void loop()
 {
+  Serial.println(current_STATUS);
   switch (current_STATUS)
   {
     case STATUS_STD:

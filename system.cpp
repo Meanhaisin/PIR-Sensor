@@ -13,6 +13,8 @@ bool system_init() //初始化端口、RF模块、检测设备是否完成配对
 
   attachInterrupt(PIR - 2, PIR_isr, CHANGE);
 
+  blink_block(1000,3);
+
   if (!radioInit())
   {
     return 0;

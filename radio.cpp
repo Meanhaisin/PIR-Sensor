@@ -2,7 +2,7 @@
 
 //extern bool ledchange;
 byte send_pipe[5]; //发送管道,从EEPROM读取
-uint8_t rfStatus = RF_STATUS_STD;
+uint8_t rfStatus = RF_STATUS_START_PAIR;
 
 RF24 RF(CE, CSN);
 
@@ -14,7 +14,7 @@ bool radioInit() //初始化
   RF.setPayloadSize(PAY_LOAD_SIZE_STD); //发射负载大小(Byte)
   readPipe();
   delay(4);
-  
+
   if (pairCheck())
   {
     RF.openWritingPipe(send_pipe);
@@ -24,13 +24,13 @@ bool radioInit() //初始化
   {
     return 0;
   }
-  
+
 }
 
 void radioSend(bool flag)
 {
   uint8_t msg = 0;
-  
+
   if (flag)
   {
     msg = bat_voltage() * 2 + 1;
@@ -39,8 +39,8 @@ void radioSend(bool flag)
   {
     msg = bat_voltage() * 2;
   }
-  
-  RF.write(&msg,sizeof(msg));
+
+  RF.write(&msg, sizeof(msg));
 }
 
 void led_blink2()
@@ -53,7 +53,7 @@ void led_blink2()
 void radioPair()
 {
   //led_blink();
-  MsTimer2::set(1000, led_blink2);
+  MsTimer2::set(500, led_blink2);
 
   switch (rfStatus)
   {
@@ -70,27 +70,33 @@ void radioPair()
       {
         RF.read(&send_pipe, sizeof(send_pipe));
         writePipe(send_pipe);
-        writeNO(0,send_pipe);
+        writeNO(0, send_pipe);
         RF.stopListening();
         RF.closeReadingPipe(PAIR_READINGPIPE);
-        blink_block(10,3);
-      }
-      
-      case RF_STATUS_STD:
+        rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
         //ledchange = 0;
         MsTimer2::stop();
         digitalWrite(LED, LOW);
-        break;
+        blink_block(10, 3);
+      }
+      if (keyDetect(SW) == SHORT_PRESSED)
+      {
+        MsTimer2::stop();
+        digitalWrite(LED, LOW);
+        RF.stopListening();
+        RF.closeReadingPipe(PAIR_READINGPIPE);
+        rfStatus = RF_STATUS_START_PAIR;
+        current_STATUS = STATUS_STD;
+      }
   }
-
 }
 
 bool pairCheck()
 {
-  
+
   int check = 0;
-  
+
   check = EEPROM.read(4);
   if (check == 0)
   {
@@ -100,5 +106,5 @@ bool pairCheck()
   {
     return 1;
   }
-  
+
 }

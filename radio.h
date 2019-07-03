@@ -13,7 +13,7 @@
 #define CE 9
 #define CSN 10
 
-#define RF_STATUS_STD 0
+//#define RF_STATUS_STD 0
 #define RF_STATUS_START_PAIR 1
 #define RF_STATUS_PAIRING 2
 
