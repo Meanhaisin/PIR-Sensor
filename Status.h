@@ -1,15 +1,16 @@
 #ifndef _Status_H
 #define _Status_H
 
-#include "Arduino.h"
+#include <Arduino.h>
 #include "system.h" //设备外设，难分类的丢这
 #include "radio.h" //无线相关代码
 #include "key.h"  //按键代码
 
 extern uint8_t keyState; //按键状态
 extern uint8_t rfStatus; //无线状态
-extern bool readKey(int sw);
-extern uint8_t keyDective(int sw); //按键读取函数
+
+//extern bool readKey(uint8_t sw);
+extern uint8_t keyDective(uint8_t sw); //按键读取函数
 extern void led_blink(); //led控制函数
 
 

@@ -17,7 +17,6 @@ void setup()
 void loop()
 {
   //Serial.println(timerset);
-  
   switch (current_STATUS)
   {
     case STATUS_STD:

@@ -31,13 +31,13 @@ bool radioInit() //初始化
     //blink_block(500, 3);
     return 0;
   }
-  
+
 }
 
 void radioSend(bool flag)
 {
   uint8_t msg = 0;
-  
+
   if (flag)
   {
     msg = bat_voltage() * 2 + 1;
@@ -46,8 +46,8 @@ void radioSend(bool flag)
   {
     msg = bat_voltage() * 2;
   }
-  
-  RF.write(&msg,sizeof(msg));
+
+  RF.write(&msg, sizeof(msg));
 }
 
 void led_blink2()
@@ -81,28 +81,38 @@ void radioPair()
       {
         RF.read(&send_pipe, sizeof(send_pipe));
         writePipe(send_pipe);
-        writeNO(0,send_pipe);
+        writeNO(0, send_pipe);
         RF.stopListening();
         RF.closeReadingPipe(PAIR_READINGPIPE);
         blink_block(10,3);
-        rfStatus = RF_STATUS_STD;
+        //rfStatus = RF_STATUS_STD;
       }
-      
+      /*
       case RF_STATUS_STD:
         current_STATUS = STATUS_STD;
         //ledchange = 0;
         //Timer1.stop();
         digitalWrite(LED, LOW);
-        break;
+        blink_block(10, 3);
+      }
+      */
+      if (keyDetect(SW) == SHORT_PRESSED)
+      {
+        MsTimer2::stop();
+        digitalWrite(LED, LOW);
+        RF.stopListening();
+        RF.closeReadingPipe(PAIR_READINGPIPE);
+        rfStatus = RF_STATUS_START_PAIR;
+        current_STATUS = STATUS_STD;
+      }
   }
-
 }
 
 bool pairCheck()
 {
-  
   int check = 0;
   
+
   check = EEPROM.read(4);
   if (check == 0)
   {
@@ -114,5 +124,5 @@ bool pairCheck()
     return 1;
     //blink_block(500, 3);
   }
-  
+
 }

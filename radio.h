@@ -1,19 +1,21 @@
 #ifndef _radio_H
 #define _radio_H
 
-#include "Arduino.h"
-#include "SPI.h"
-#include "nRF24L01.h"
-#include "RF24.h"
+#include <Arduino.h>
+#include <SPI.h>
+#include <nRF24L01.h>
+#include <RF24.h>
+#include <MsTimer2.h>
 #include "system.h"
 #include "ROM.h"
 #include "Status.h"
 #include "TimerOne.h"
 
+
 #define CE 9
 #define CSN 10
 
-#define RF_STATUS_STD 0
+//#define RF_STATUS_STD 0
 #define RF_STATUS_START_PAIR 1
 #define RF_STATUS_PAIRING 2
 
