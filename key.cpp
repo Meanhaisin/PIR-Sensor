@@ -13,7 +13,7 @@ bool readKey(int sw)
   }
   else
   {
-    return 1;
+    return 0;
   }
 }
 

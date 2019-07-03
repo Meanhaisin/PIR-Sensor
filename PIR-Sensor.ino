@@ -1,7 +1,8 @@
 #include "Status.h"
-
+//extern int timerset;
 void setup()
 {
+  Serial.begin(115200);
   if(system_init())
   {
     current_STATUS = STATUS_STD;
@@ -15,6 +16,7 @@ void setup()
   
 void loop()
 {
+  //Serial.println(timerset);
   
   switch (current_STATUS)
   {

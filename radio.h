@@ -8,7 +8,7 @@
 #include "system.h"
 #include "ROM.h"
 #include "Status.h"
-#include "MsTimer2.h"
+#include "TimerOne.h"
 
 #define CE 9
 #define CSN 10
@@ -21,6 +21,8 @@
 #define PAY_LOAD_SIZE_STD 1 //标准发射负载大小
 #define PAY_LOAD_SIZE_PAIR 5 //配对发射负载大小
 #define PAIR_READINGPIPE 1 //配对管道
+
+#define INTERVAL 500000
 
 const byte pair_pipe[5] = {'P', 'p', 'a','i' ,'r'}; //配对默认管道
 
