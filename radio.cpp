@@ -11,7 +11,7 @@ RF24 RF(CE, CSN);
 bool radioInit() //初始化
 {
   bool ispair = 0;
-  
+
   RF.begin();
   RF.setDataRate(RF24_250KBPS); //发射速率设定
   RF.setPALevel(RF24_PA_HIGH); //发射功率设定,测试后可适当调小以节能
@@ -52,7 +52,7 @@ void radioSend(bool flag)
 
 void led_blink2()
 {
-  digitalWrite(LED,led_flagblink);
+  digitalWrite(LED, led_flagblink);
   //PORTD = ~(PORTD ^ B11101111);
   led_flagblink = !led_flagblink;
   //blink_block(500, 3);
@@ -84,18 +84,11 @@ void radioPair()
         writeNO(0, send_pipe);
         RF.stopListening();
         RF.closeReadingPipe(PAIR_READINGPIPE);
-        blink_block(10,3);
-        //rfStatus = RF_STATUS_STD;
-      }
-      /*
-      case RF_STATUS_STD:
+        rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
-        //ledchange = 0;
-        //Timer1.stop();
-        digitalWrite(LED, LOW);
         blink_block(10, 3);
       }
-      */
+
       if (keyDetect(SW) == SHORT_PRESSED)
       {
         MsTimer2::stop();
@@ -105,13 +98,22 @@ void radioPair()
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
       }
+      /*
+        case RF_STATUS_STD:
+        current_STATUS = STATUS_STD;
+        //ledchange = 0;
+        //Timer1.stop();
+        digitalWrite(LED, LOW);
+        blink_block(10, 3);
+        }
+      */
   }
 }
 
 bool pairCheck()
 {
   int check = 0;
-  
+
 
   check = EEPROM.read(4);
   if (check == 0)
