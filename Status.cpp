@@ -26,10 +26,5 @@ void DO_STATUS_pair()
 {
   
   radioPair();
-
-  if(keyDetect(SW) == SHORT_PRESSED)
-  {
-     current_STATUS = STATUS_STD;
-  }
   
 }

@@ -22,7 +22,7 @@ extern volatile uint8_t current_STATUS;
 extern volatile bool alarm;
 extern uint8_t keyStatus;
 
-bool system_init();
+void system_init();
 void PIR_isr();
 //void led_blink();
 void blink_block(uint8_t t, uint8_t count);

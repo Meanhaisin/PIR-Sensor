@@ -3,15 +3,7 @@
 void setup()
 {
   Serial.begin(115200);
-  if(system_init())
-  {
-    current_STATUS = STATUS_STD;
-  }
-  else
-  {
-    current_STATUS = STATUS_PAIR;
-    rfStatus = RF_STATUS_START_PAIR;
-  }
+  system_init();
 }
   
 void loop()

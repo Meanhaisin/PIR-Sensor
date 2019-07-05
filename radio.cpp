@@ -17,7 +17,6 @@ bool radioInit() //初始化
   RF.setPALevel(RF24_PA_HIGH); //发射功率设定,测试后可适当调小以节能
   RF.setPayloadSize(PAY_LOAD_SIZE_STD); //发射负载大小(Byte)
   readPipe();
-  delay(4);
   ispair = pairCheck();
   //blink_block(500, 3);
   if (ispair)
@@ -67,10 +66,25 @@ void radioPair()
   {
     case RF_STATUS_START_PAIR:
       //blink_block(500, 3);
+      RF.setPayloadSize(PAY_LOAD_SIZE_PAIR);
       RF.openReadingPipe(PAIR_READINGPIPE, pair_pipe);
       RF.startListening();
       rfStatus = RF_STATUS_PAIRING;
       //ledchange = 1;
+      if (keyDetect(SW) == SHORT_PRESSED)
+      {
+        MsTimer2::stop();
+        digitalWrite(LED, LOW);
+
+        RF.stopListening();
+        RF.closeReadingPipe(PAIR_READINGPIPE);
+        RF.setPayloadSize(PAY_LOAD_SIZE_STD);
+        RF.openWritingPipe(send_pipe);
+
+        rfStatus = RF_STATUS_START_PAIR;
+        current_STATUS = STATUS_STD;
+      }
+      
       Timer1.initialize(INTERVAL);
       Timer1.attachInterrupt(led_blink2);
       //blink_block(500, 3);
@@ -82,19 +96,30 @@ void radioPair()
         RF.read(&send_pipe, sizeof(send_pipe));
         writePipe(send_pipe);
         writeNO(0, send_pipe);
+        delay(500);
         RF.stopListening();
         RF.closeReadingPipe(PAIR_READINGPIPE);
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
-        blink_block(10, 3);
+        for (int i = 0; i < 5; i++)
+        {
+          Serial.write(send_pipe[i]);
+        }
+        MsTimer2::stop();
+        digitalWrite(LED, LOW);
+        blink_block(100, 3);
       }
 
       if (keyDetect(SW) == SHORT_PRESSED)
       {
         MsTimer2::stop();
         digitalWrite(LED, LOW);
+
         RF.stopListening();
         RF.closeReadingPipe(PAIR_READINGPIPE);
+        RF.setPayloadSize(PAY_LOAD_SIZE_STD);
+        RF.openWritingPipe(send_pipe);
+
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
       }
@@ -112,11 +137,7 @@ void radioPair()
 
 bool pairCheck()
 {
-  int check = 0;
-
-
-  check = EEPROM.read(4);
-  if (check == 0)
+  if (EEPROM.read(NO_OFFSITE) == NONE)
   {
     return 0;
     //blink_block(500, 3);
@@ -126,5 +147,4 @@ bool pairCheck()
     return 1;
     //blink_block(500, 3);
   }
-
 }
