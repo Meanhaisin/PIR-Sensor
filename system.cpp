@@ -89,6 +89,18 @@ void blink_block(uint8_t t, uint8_t count) //阻塞blink
 
 }
 
+
+void led_blink2()
+{
+  static bool led_flagblink = 1;
+  digitalWrite(LED, led_flagblink);
+  //PORTD = ~(PORTD ^ B11101111);
+  led_flagblink = !led_flagblink;
+  //blink_block(500, 3);
+  //timerset++;
+}
+
+
 uint8_t bat_voltage()
 {
 

@@ -4,7 +4,6 @@
 byte send_pipe[5]; //发送管道,从EEPROM读取
 uint8_t rfStatus = RF_STATUS_START_PAIR;
 //int timerset = 0;
-bool led_flagblink = 1;
 
 RF24 RF(CE, CSN);
 
@@ -49,15 +48,6 @@ void radioSend(bool flag)
   RF.write(&msg, sizeof(msg));
 }
 
-void led_blink2()
-{
-  digitalWrite(LED, led_flagblink);
-  //PORTD = ~(PORTD ^ B11101111);
-  led_flagblink = !led_flagblink;
-  //blink_block(500, 3);
-  //timerset++;
-}
-
 void radioPair()
 {
   //led_blink();
@@ -71,6 +61,10 @@ void radioPair()
       RF.startListening();
       rfStatus = RF_STATUS_PAIRING;
       //ledchange = 1;
+      Timer1.initialize(INTERVAL);
+      Timer1.attachInterrupt(led_blink2);
+      //blink_block(500, 3);
+      
       if (keyDetect(SW) == SHORT_PRESSED)
       {
         MsTimer2::stop();
@@ -84,10 +78,6 @@ void radioPair()
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
       }
-      
-      Timer1.initialize(INTERVAL);
-      Timer1.attachInterrupt(led_blink2);
-      //blink_block(500, 3);
       break;
 
     case RF_STATUS_PAIRING:
@@ -99,12 +89,16 @@ void radioPair()
         delay(500);
         RF.stopListening();
         RF.closeReadingPipe(PAIR_READINGPIPE);
+        RF.setPayloadSize(PAY_LOAD_SIZE_STD);
+        RF.openWritingPipe(send_pipe);
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
+        /*
         for (int i = 0; i < 5; i++)
         {
           Serial.write(send_pipe[i]);
         }
+        */
         MsTimer2::stop();
         digitalWrite(LED, LOW);
         blink_block(100, 3);

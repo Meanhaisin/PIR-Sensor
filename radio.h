@@ -26,6 +26,8 @@
 
 #define INTERVAL 500000
 
+extern volatile uint8_t current_STATUS;
+
 const byte pair_pipe[5] = {'P', 'p', 'a','i' ,'r'}; //配对默认管道
 
 bool radioInit();

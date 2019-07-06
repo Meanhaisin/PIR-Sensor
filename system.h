@@ -25,6 +25,7 @@ extern uint8_t keyStatus;
 void system_init();
 void PIR_isr();
 //void led_blink();
+void led_blink2();
 void blink_block(uint8_t t, uint8_t count);
 uint8_t bat_voltage();
 void IDLE_2min();

@@ -5,10 +5,18 @@ void setup()
   Serial.begin(115200);
   system_init();
 }
-  
+
 void loop()
 {
-  //Serial.println(timerset);
+  if (keyDetect(SW) == SHORT_PRESSED)
+  {
+    Serial.println("SHORT_PRESSED");
+  }
+  if (keyDetect(SW) == LONG_PRESSED)
+  {
+    Serial.println("LONG_PRESSED");
+  }
+
   switch (current_STATUS)
   {
     case STATUS_STD:
@@ -23,5 +31,5 @@ void loop()
       DO_STATUS_pair();
       break;
   }
-  
+
 }
