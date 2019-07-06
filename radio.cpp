@@ -9,18 +9,23 @@ RF24 RF(CE, CSN);
 
 bool radioInit() //初始化
 {
-  bool ispair = 0;
-
   RF.begin();
   RF.setDataRate(RF24_250KBPS); //发射速率设定
   RF.setPALevel(RF24_PA_HIGH); //发射功率设定,测试后可适当调小以节能
   RF.setPayloadSize(PAY_LOAD_SIZE_STD); //发射负载大小(Byte)
   readPipe();
-  ispair = pairCheck();
+  /*
+    for (int i = 0; i < 5; i++)
+    {
+    Serial.write(send_pipe[i]);
+    }
+  */
   //blink_block(500, 3);
-  if (ispair)
+  if (pairCheck())
   {
     RF.openWritingPipe(send_pipe);
+    RF.openReadingPipe(0, send_pipe);
+    RF.startListening();
     //blink_block(500, 3);
     return 1;
   }
@@ -35,7 +40,7 @@ bool radioInit() //初始化
 void radioSend(bool flag)
 {
   uint8_t msg = 0;
-
+  uint8_t i = 0;
   if (flag)
   {
     msg = bat_voltage() * 2 + 1;
@@ -44,8 +49,12 @@ void radioSend(bool flag)
   {
     msg = bat_voltage() * 2;
   }
-
-  RF.write(&msg, sizeof(msg));
+  Serial.println("Sending.................................................................................................................");
+  while (!RF.write(&msg, sizeof(msg)) & (i < 5))
+  {
+    i ++;
+    Serial.println("failed!!!!!!!!!!!!!!!!!!!!");
+  }
 }
 
 void radioPair()
@@ -64,9 +73,9 @@ void radioPair()
       Timer1.initialize(INTERVAL);
       Timer1.attachInterrupt(led_blink2);
       //blink_block(500, 3);
-      
-      if (keyDetect(SW) == SHORT_PRESSED)
+      if (sw_status == SHORT_PRESSED)
       {
+        //Serial.println(1);
         Timer1.stop();
         digitalWrite(LED, LOW);
 
@@ -94,18 +103,19 @@ void radioPair()
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
         /*
-        for (int i = 0; i < 5; i++)
-        {
+          for (int i = 0; i < 5; i++)
+          {
           Serial.write(send_pipe[i]);
-        }
+          }
         */
         Timer1.stop();
         digitalWrite(LED, LOW);
         blink_block(100, 3);
       }
 
-      if (keyDetect(SW) == SHORT_PRESSED)
+      if (sw_status == SHORT_PRESSED)
       {
+        //Serial.println(1);
         Timer1.stop();
         digitalWrite(LED, LOW);
 

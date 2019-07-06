@@ -2,6 +2,7 @@
 
 //bool ledchange = 1; //判断是否进入blink
 //bool ledflag = 0; //实现blink
+uint8_t sw_status = NOT_PRESSED;
 
 void system_init() //初始化端口、RF模块、检测设备是否完成配对（未配对进入STATUS_pair,否则进入STATUS_std)
 {
@@ -71,8 +72,6 @@ void PIR_isr()
 
     current_STATUS = STATUS_MSG;
   }
-
-
 }
 
 void blink_block(uint8_t t, uint8_t count) //阻塞blink
@@ -99,6 +98,10 @@ void led_blink2()
   //timerset++;
 }
 
+void sw_press()
+{
+  sw_status = keyDetect(SW);
+}
 
 uint8_t bat_voltage()
 {

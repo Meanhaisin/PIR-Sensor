@@ -8,14 +8,17 @@ void setup()
 
 void loop()
 {
-  if (keyDetect(SW) == SHORT_PRESSED)
+  /*
+  if (sw_status == SHORT_PRESSED)
   {
     Serial.println("SHORT_PRESSED");
   }
-  if (keyDetect(SW) == LONG_PRESSED)
+  if (sw_status == LONG_PRESSED)
   {
     Serial.println("LONG_PRESSED");
   }
+  */
+  //Serial.println(alarm);
 
   switch (current_STATUS)
   {
@@ -31,5 +34,6 @@ void loop()
       DO_STATUS_pair();
       break;
   }
-
+  
+  sw_press();
 }

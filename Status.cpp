@@ -16,15 +16,11 @@ void DO_STATUS_std()
 
 void DO_STATUS_msg()
 {
-
   radioSend(alarm);
   current_STATUS = STATUS_STD;
-    
 }
 
 void DO_STATUS_pair()
 {
-  
-  radioPair();
-  
+  radioPair(); 
 }

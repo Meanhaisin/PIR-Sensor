@@ -10,23 +10,18 @@
 #define SW 4
 #define LED 5
 #define BAT A0
-
-/*
- * LED的三种状态以及闪烁间隔
- */
-#define LED_STATUS_BRIGHT 0
-#define LED_STATUS_DARK 1
-#define LED_DELAY_SLOW 5000 //闪烁间隔
  
 extern volatile uint8_t current_STATUS;
 extern volatile bool alarm;
 extern uint8_t keyStatus;
+extern uint8_t sw_status;
 
 void system_init();
 void PIR_isr();
 //void led_blink();
 void led_blink2();
 void blink_block(uint8_t t, uint8_t count);
+void sw_press();
 uint8_t bat_voltage();
 void IDLE_2min();
 void Powerdown(unsigned long m); //ms
