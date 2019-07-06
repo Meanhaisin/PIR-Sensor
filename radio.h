@@ -5,12 +5,10 @@
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
-#include <MsTimer2.h>
+#include <TimerOne.h>
 #include "system.h"
 #include "ROM.h"
 #include "Status.h"
-#include "TimerOne.h"
-
 
 #define CE 9
 #define CSN 10
@@ -18,7 +16,6 @@
 //#define RF_STATUS_STD 0
 #define RF_STATUS_START_PAIR 1
 #define RF_STATUS_PAIRING 2
-
 
 #define PAY_LOAD_SIZE_STD 1 //标准发射负载大小
 #define PAY_LOAD_SIZE_PAIR 5 //配对发射负载大小

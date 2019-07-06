@@ -67,7 +67,7 @@ void radioPair()
       
       if (keyDetect(SW) == SHORT_PRESSED)
       {
-        MsTimer2::stop();
+        Timer1.stop();
         digitalWrite(LED, LOW);
 
         RF.stopListening();
@@ -99,14 +99,14 @@ void radioPair()
           Serial.write(send_pipe[i]);
         }
         */
-        MsTimer2::stop();
+        Timer1.stop();
         digitalWrite(LED, LOW);
         blink_block(100, 3);
       }
 
       if (keyDetect(SW) == SHORT_PRESSED)
       {
-        MsTimer2::stop();
+        Timer1.stop();
         digitalWrite(LED, LOW);
 
         RF.stopListening();

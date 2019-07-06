@@ -10,7 +10,6 @@ void system_init() //初始化端口、RF模块、检测设备是否完成配对
   pinMode(SW, INPUT);
   digitalWrite(SW, HIGH); //使用内置上拉电阻
   pinMode(LED, OUTPUT);
-  //blink_block(500, 3);
 
   attachInterrupt(PIR - 2, PIR_isr, CHANGE);
 
