@@ -24,8 +24,6 @@ bool radioInit() //初始化
   if (pairCheck())
   {
     RF.openWritingPipe(send_pipe);
-    RF.openReadingPipe(0, send_pipe);
-    RF.startListening();
     //blink_block(500, 3);
     return 1;
   }
@@ -49,11 +47,11 @@ void radioSend(bool flag)
   {
     msg = bat_voltage() * 2;
   }
-  Serial.println("Sending.................................................................................................................");
-  while (!RF.write(&msg, sizeof(msg)) & (i < 5))
+  //Serial.println("Sending.........................................");
+  while (!RF.write(&msg, sizeof(msg)) & (i < 3))
   {
     i ++;
-    Serial.println("failed!!!!!!!!!!!!!!!!!!!!");
+    //Serial.println("failed!!!!!!!!!!!!!!!!!!!!");
   }
 }
 
