@@ -105,9 +105,12 @@ void sw_press()
 
 uint8_t bat_voltage()
 {
-
   return analogRead(BAT) / 8;
+}
 
+uint8_t BatPercent()
+{
+  return map(analogRead(BAT), 327, 615, 0, 100); //1V6-3V
 }
 
 void IDLE_2min()
@@ -118,9 +121,9 @@ void IDLE_2min()
   }
 }
 
-void Powerdown(unsigned long m)
+void Powerdown(unsigned long m,uint8_t p)
 {
-  if (millis() > m)
+  if (millis() > m or BatPercent() < p)
   {
     LowPower.powerDown(SLEEP_FOREVER, ADC_OFF, BOD_OFF);
   }

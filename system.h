@@ -10,7 +10,7 @@
 #define SW 4
 #define LED 5
 #define BAT A0
- 
+
 extern volatile uint8_t current_STATUS;
 extern volatile bool alarm;
 extern uint8_t keyStatus;
@@ -23,7 +23,8 @@ void led_blink2();
 void blink_block(uint8_t t, uint8_t count);
 void sw_press();
 uint8_t bat_voltage();
+uint8_t BatPercent();
 void IDLE_2min();
-void Powerdown(unsigned long m); //ms
+void Powerdown(unsigned long m, uint8_t p); //ms,%
 
 #endif

@@ -11,7 +11,7 @@ void DO_STATUS_std()
   }
   
   //IDLE_2min();
-  Powerdown(7200000);
+  Powerdown(7200000,3);
 }
 
 void DO_STATUS_msg()
