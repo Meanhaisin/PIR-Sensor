@@ -1,7 +1,5 @@
 #include "system.h"
 
-//bool ledchange = 1; //判断是否进入blink
-//bool ledflag = 0; //实现blink
 uint8_t sw_status = NOT_PRESSED;
 
 void system_init() //初始化端口、RF模块、检测设备是否完成配对（未配对进入STATUS_pair,否则进入STATUS_std)
@@ -26,38 +24,7 @@ void system_init() //初始化端口、RF模块、检测设备是否完成配对
     rfStatus = RF_STATUS_START_PAIR;
   }
 }
-/*
-  void led_blink() //配对时非阻塞blink
-  {
-  static uint8_t duriation1;
 
-  if (ledchange == 1) //开始配对
-  {
-    if(ledflag == 1 && duriation1 < LED_DELAY_SLOW) //led high
-    {
-      digitalWrite(LED, HIGH);
-      duriation1++;
-    }
-    else if(ledflag == 0 && duriation1 < LED_DELAY_SLOW) //led low
-    {
-      digitalWrite(LED, LOW);
-      duriation1++;
-    }
-    else  //time change
-    {
-      duriation1 = 0;
-      ledflag = !ledflag;
-    }
-  }
-  else  //防止led常亮，并修正blink
-  {
-    digitalWrite(LED, LOW);
-    duriation1 = 0;
-    ledflag = 1;
-  }
-
-  }
-*/
 void PIR_isr()
 {
   if (digitalRead(PIR) == HIGH && alarm == 0)
@@ -87,15 +54,12 @@ void blink_block(uint8_t t, uint8_t count) //阻塞blink
 
 }
 
-
 void led_blink2()
 {
   static bool led_flagblink = 1;
   digitalWrite(LED, led_flagblink);
   //PORTD = ~(PORTD ^ B11101111);
   led_flagblink = !led_flagblink;
-  //blink_block(500, 3);
-  //timerset++;
 }
 
 void sw_press()

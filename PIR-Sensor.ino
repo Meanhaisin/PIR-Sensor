@@ -1,25 +1,12 @@
 #include "Status.h"
-//extern int timerset;
+
 void setup()
 {
-  Serial.begin(115200);
   system_init();
 }
 
 void loop()
 {
-  /*
-  if (sw_status == SHORT_PRESSED)
-  {
-    Serial.println("SHORT_PRESSED");
-  }
-  if (sw_status == LONG_PRESSED)
-  {
-    Serial.println("LONG_PRESSED");
-  }
-  */
-  //Serial.println(alarm);
-
   switch (current_STATUS)
   {
     case STATUS_STD:
