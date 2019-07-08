@@ -5,7 +5,7 @@ volatile bool alarm = 0;
 
 void DO_STATUS_std()
 {
-  if(keyDetect(SW) == LONG_PRESSED)
+  if(sw_status == LONG_PRESSED)
   {
      current_STATUS = STATUS_PAIR;
   }
