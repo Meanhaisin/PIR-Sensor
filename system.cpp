@@ -12,7 +12,7 @@ void system_init() //初始化端口、RF模块、检测设备是否完成配对
   digitalWrite(SW, HIGH); //使用内置上拉电阻
   pinMode(LED, OUTPUT);
 
-  attachInterrupt(PIR - 2, PIR_isr, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(PIR), PIR_isr, CHANGE);
 
   blink_block(1000,3);
 
@@ -112,7 +112,7 @@ uint8_t BatPercent()
 {
   return map(analogRead(BAT), 327, 615, 0, 100); //1V6-3V
 }
-
+/*
 void IDLE_2min()
 {
   for (uint8_t i = 0; i < 15; i++)
@@ -128,3 +128,4 @@ void Powerdown(unsigned long m,uint8_t p)
     LowPower.powerDown(SLEEP_FOREVER, ADC_OFF, BOD_OFF);
   }
 }
+*/

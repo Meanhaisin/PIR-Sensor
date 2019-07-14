@@ -63,9 +63,12 @@ void radioPair()
   {
     case RF_STATUS_START_PAIR:
       //blink_block(500, 3);
+      detachInterrupt(digitalPinToInterrupt(PIR));
+      
       RF.setPayloadSize(PAY_LOAD_SIZE_PAIR);
       RF.openReadingPipe(PAIR_READINGPIPE, pair_pipe);
       RF.startListening();
+      
       rfStatus = RF_STATUS_PAIRING;
       //ledchange = 1;
       Timer1.initialize(INTERVAL);
@@ -81,6 +84,8 @@ void radioPair()
         RF.closeReadingPipe(PAIR_READINGPIPE);
         RF.setPayloadSize(PAY_LOAD_SIZE_STD);
         RF.openWritingPipe(send_pipe);
+
+        attachInterrupt(digitalPinToInterrupt(PIR), PIR_isr, CHANGE);
 
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
@@ -98,6 +103,9 @@ void radioPair()
         RF.closeReadingPipe(PAIR_READINGPIPE);
         RF.setPayloadSize(PAY_LOAD_SIZE_STD);
         RF.openWritingPipe(send_pipe);
+
+        attachInterrupt(digitalPinToInterrupt(PIR), PIR_isr, CHANGE);
+        
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
         /*
@@ -121,6 +129,8 @@ void radioPair()
         RF.closeReadingPipe(PAIR_READINGPIPE);
         RF.setPayloadSize(PAY_LOAD_SIZE_STD);
         RF.openWritingPipe(send_pipe);
+
+        attachInterrupt(digitalPinToInterrupt(PIR), PIR_isr, CHANGE);
 
         rfStatus = RF_STATUS_START_PAIR;
         current_STATUS = STATUS_STD;
