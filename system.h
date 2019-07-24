@@ -10,7 +10,7 @@
 #define LED 5
 #define BAT A0
 
-#define POWERDOWN_T 10000 //进入低功耗模式时间（ms）
+#define POWERDOWN_T 300000 //进入低功耗模式时间（ms）
 
 extern volatile uint8_t current_STATUS;
 extern volatile bool alarm;
