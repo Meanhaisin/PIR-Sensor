@@ -10,8 +10,7 @@ void DO_STATUS_std()
      current_STATUS = STATUS_PAIR;
   }
   
-  //IDLE_2min();
-  Powerdown(7200000,3);
+  PowerSave(POWERDOWN_T,3);
 }
 
 void DO_STATUS_msg()

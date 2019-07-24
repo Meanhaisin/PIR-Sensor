@@ -12,7 +12,7 @@
 /* 等待状态持续时间
   需要根据单片机速度和按键消抖程序被调用的速度来进行调整
 */
-#define LONG_PRESSED_TIME 10000
+#define LONG_PRESSED_TIME 8000
 
 /* 按键检测函数的返回值，按下为 1，未按下为 0 */
 #define LONG_PRESSED 2

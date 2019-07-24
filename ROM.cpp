@@ -21,8 +21,9 @@ void readPipe()
   }
   send_pipe[0] = EEPROM.read(NO_OFFSITE);
 }
-
+/*
 void delPipe()
 {
   EEPROM.update(NO_OFFSITE,NONE);
 }
+*/

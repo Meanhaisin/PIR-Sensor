@@ -18,6 +18,6 @@ extern byte send_pipe[5];
 void writePipe(byte pipe[]); //写入管道
 void writeNO(uint8_t no,byte pipe[]); //设置标志位(管道第一位)
 void readPipe();
-void delPipe(); //删除管道(只需清除标志位)
+//void delPipe(); //删除管道(只需清除标志位)
 
 #endif

@@ -24,6 +24,10 @@
 
 extern volatile uint8_t current_STATUS;
 
+extern void writePipe(const byte pipe[]); //写入管道
+extern void writeNO(uint8_t no ,const byte pipe[]); //设置标志位(管道第一位)
+extern void readPipe();
+
 const byte pair_pipe[5] = {'P', 'p', 'a','i' ,'r'}; //配对默认管道
 
 bool radioInit();

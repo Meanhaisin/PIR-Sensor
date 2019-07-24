@@ -10,9 +10,12 @@ void system_init() //初始化端口、RF模块、检测设备是否完成配对
   digitalWrite(SW, HIGH); //使用内置上拉电阻
   pinMode(LED, OUTPUT);
 
-  attachInterrupt(PIR - 2, PIR_isr, CHANGE);
+  disablePower(POWER_SERIAL0); // 关闭串口
+  disablePower(POWER_WIRE); //关闭I²C
 
-  blink_block(1000,3);
+  attachInterrupt(digitalPinToInterrupt(PIR), PIR_isr, CHANGE);
+
+  blink_block(1000, 3);
 
   if (radioInit())
   {
@@ -69,7 +72,7 @@ void sw_press()
 
 uint8_t bat_voltage()
 {
-  return analogRead(BAT) / 8;
+  return analogRead(BAT) << 1;
 }
 
 uint8_t BatPercent()
@@ -77,18 +80,16 @@ uint8_t BatPercent()
   return map(analogRead(BAT), 327, 615, 0, 100); //1V6-3V
 }
 
-void IDLE_2min()
+void PowerSave(unsigned long m, uint8_t p)
 {
-  for (uint8_t i = 0; i < 15; i++)
+  if (millis() > m )
   {
-    LowPower.idle(SLEEP_8S, ADC_OFF, TIMER2_OFF, TIMER1_OFF, TIMER0_OFF, SPI_OFF, USART0_OFF, TWI_OFF);
+    sleepMode(SLEEP_POWER_DOWN); //约节省电流26mA
+    sleep();
   }
-}
-
-void Powerdown(unsigned long m,uint8_t p)
-{
-  if (millis() > m or BatPercent() < p)
+  if (BatPercent() < p)
   {
-    LowPower.powerDown(SLEEP_FOREVER, ADC_OFF, BOD_OFF);
+    disablePower(POWER_ALL);
+    sleep();
   }
 }

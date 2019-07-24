@@ -13,8 +13,9 @@
 extern uint8_t keyState; //按键状态
 extern uint8_t rfStatus; //无线状态
 
-extern uint8_t keyDective(uint8_t sw); //按键读取函数
-extern void led_blink(); //led控制函数
+extern void radioSend(bool flag); //发送
+extern void radioPair(); 
+extern void PowerSave(unsigned long m, uint8_t p); //ms,%
 
 void DO_STATUS_std();
 void DO_STATUS_msg();
